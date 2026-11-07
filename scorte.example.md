@@ -14,6 +14,12 @@ Aggiornato dalla skill `mai-drugs` a ogni ritiro e a ogni richiesta inviata. Non
 |---|---|---|---|
 | | | | |
 
+## Invii programmati
+
+| Data e ora invio | Id job | Canale | Destinatario | Farmaci | Fine scorta prevista |
+|---|---|---|---|---|---|
+| | | | | | |
+
 ## Richieste inviate
 
 | Data e ora invio | Canale | Destinatario | Farmaci | Fine scorta prevista |

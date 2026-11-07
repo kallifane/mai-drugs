@@ -12,6 +12,7 @@ Created by the skill on first use as `dati/profilo.md`. Edit freely.
 - Doctor's turnaround in working days (default: 2):
 - Advance: working days before running out to send the request (default: 2, must be larger than the turnaround):
 - How to receive the prescription (email, SMS, pick-up at the office):
+- Send time of day (default: 09:00):
 - Sending (automatic / confirm first; default: automatic):
 
 ## Regular medicines
