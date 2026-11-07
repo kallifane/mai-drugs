@@ -1,6 +1,6 @@
 # Scorte farmaci
 
-Aggiornato dalla skill `mai-drugs` a ogni ritiro. Non cancellare le righe dello storico.
+Aggiornato dalla skill `mai-drugs` a ogni ritiro e a ogni richiesta inviata. Non cancellare le righe dello storico.
 
 ## Stato attuale
 
@@ -13,3 +13,9 @@ Aggiornato dalla skill `mai-drugs` a ogni ritiro. Non cancellare le righe dello 
 | Data ritiro | Farmaco | Scatole ricevute | Unità aggiunte |
 |---|---|---|---|
 | | | | |
+
+## Richieste inviate
+
+| Data e ora invio | Canale | Destinatario | Farmaci | Fine scorta prevista |
+|---|---|---|---|---|
+| | | | | |
