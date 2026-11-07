@@ -1,5 +1,5 @@
 ---
-name: richiesta-medico
+name: mai-drugs
 description: Manages medicine requests to a GP / family doctor. Drafts the prescription or renewal email and tracks stock by logging the boxes picked up. Use when the user says things like "I need to ask my doctor for a prescription", "write to the doctor for my meds", "renew my prescription", "I'm running out of pills", "I picked up my medicines", "the doctor gave me N boxes" — or in Italian "devo chiedere la ricetta al medico", "scrivi al dottore per le medicine", "rinnovo ricetta", "finisco le pillole", "ho ritirato le medicine". Works in any language.
 ---
 

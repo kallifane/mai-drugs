@@ -1,6 +1,6 @@
 # mai-drugs
 
-Skill `richiesta-medico`: gestisce le richieste di farmaci al medico di base. Scrive l'email per ricette e rinnovi e tiene traccia delle scorte dai ritiri.
+Skill `mai-drugs`: gestisce le richieste di farmaci al medico di base. Scrive l'email per ricette e rinnovi e tiene traccia delle scorte dai ritiri.
 
 Il repo è la skill: `SKILL.md` sta nella radice.
 

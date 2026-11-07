@@ -1,6 +1,6 @@
 # Scorte farmaci
 
-Aggiornato dalla skill `richiesta-medico` a ogni ritiro. Non cancellare le righe dello storico.
+Aggiornato dalla skill `mai-drugs` a ogni ritiro. Non cancellare le righe dello storico.
 
 ## Stato attuale
 
