@@ -1,13 +1,18 @@
 ---
 name: mai-drugs
-description: Manages medicine requests to a GP / family doctor. Drafts the prescription or renewal message (email, SMS or WhatsApp) and tracks stock by logging the boxes picked up. Use when the user says things like "I need to ask my doctor for a prescription", "write to the doctor for my meds", "renew my prescription", "I'm running out of pills", "I picked up my medicines", "the doctor gave me N boxes" — or in Italian "devo chiedere la ricetta al medico", "scrivi al dottore per le medicine", "rinnovo ricetta", "finisco le pillole", "ho ritirato le medicine". Works in any language.
+description: Manages medicine requests to a GP / family doctor. Sends the prescription or renewal request to the doctor (email, SMS or WhatsApp) and tracks stock by logging the boxes picked up. Use when the user says things like "I need to ask my doctor for a prescription", "write to the doctor for my meds", "renew my prescription", "I'm running out of pills", "I picked up my medicines", "the doctor gave me N boxes" — or in Italian "devo chiedere la ricetta al medico", "scrivi al dottore per le medicine", "rinnovo ricetta", "finisco le pillole", "ho ritirato le medicine". Works in any language.
 ---
 
 # Doctor medicine requests
 
-Prepares the message asking the doctor for a prescription, in the channel the user chose (email, SMS or WhatsApp), and keeps track of how long the medicines will last. For the user's own medicines only.
+Writes **and sends** the message asking the doctor for a prescription, on the channel the user chose (email, SMS or WhatsApp), and keeps track of how long the medicines will last. For the user's own medicines only.
 
-The skill **drafts** the message in chat and never sends anything: the user sends it to the doctor's address or number saved in the profile.
+The skill is an agent: it **sends** the message itself to the doctor's address or number saved in the profile, using whatever sending tool is available for that channel (a mail connector for email, a messaging tool for SMS / WhatsApp). It does not hand the text back for the user to send.
+
+Be honest about the outcome:
+
+- Say "sent" only after the sending tool confirmed it. Then report in one line: channel, recipient, date and time.
+- If no tool is available for the saved channel, or the send fails, **do not claim it was sent**. Say what is missing or what failed, show the message and the recipient so the user can send it by hand, and log nothing as sent.
 
 ## How the user talks to the skill
 
@@ -38,6 +43,7 @@ If `dati/profilo.md` does not exist, ask the user these questions (with `AskUser
 6. **Advance**: how many working days before the stock runs out the user wants to send the request. Default 2. It must be larger than the turnaround, otherwise the prescription is ready the very day the stock ends with no margin: if the answer is not larger, say so and suggest turnaround + 1.
 7. How the user wants to receive the prescription (email, SMS, pick-up at the office).
 8. Regular medicines: name, dosage, units per day, units per box.
+9. **Sending**: send automatically when the user asks for the request (default), or show the message and ask for confirmation first.
 
 Save the answers, then continue with the request. Never leave an unanswered item silently out of the message: if something is missing, ask.
 
@@ -47,8 +53,10 @@ Save the answers, then continue with the request. Never leave an unanswered item
 2. If a required datum is missing (medicine name, dosage), ask. Never invent names, dosages or quantities.
 3. From `dati/scorte.md`, compute the run-out date: units left ÷ units per day. If the user gives a date, use it.
 4. Check the advance: the message must go out **at least the configured number of working days before** the stock runs out (weekends and holidays the user mentions do not count). Give the latest date to send it. If the doctor's turnaround leaves no margin, say so and suggest an earlier date. If the window has already passed, mark the message urgent and tell the user in one line.
-5. Write the message in the saved channel's format (see below), addressed to the saved email / number. **Do not state the number of boxes**: the doctor decides.
-6. Deliver only the message plus the address or number to send it to. Add a single extra line only if data is missing or the advance has been exceeded.
+5. Write the message in the saved channel's format (see below). **Do not state the number of boxes**: the doctor decides.
+6. Check the "Requests sent" table in `dati/scorte.md`: if a request for the same medicines was already sent and no pickup has been logged since, tell the user and ask before sending another.
+7. Send it to the saved email / number on the saved channel. If the profile says "confirm first", show the message and wait for a yes before sending.
+8. Reply in one line with the outcome (see above) and, if the advance was exceeded or data was missing, one extra line about it. Append a row to the "Requests sent" table in `dati/scorte.md`.
 
 ### Email structure (channel: email)
 
@@ -93,6 +101,7 @@ When the user says they collected the medicines:
 ## Rules
 
 - Concise, direct, no filler.
+- Never send to an address or number other than the one saved in the profile.
 - One request per message; several medicines go in a single list.
 - No medical advice: never suggest medicines or dosage changes. Report any new symptoms or side effects the user mentions to the doctor as stated, without interpreting them.
 - Posologia / units per day are used only to compute stock, never written in the message.
