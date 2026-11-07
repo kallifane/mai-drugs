@@ -33,7 +33,7 @@ If `dati/profilo.md` does not exist, ask the user these questions (with `AskUser
 1. Language and tone of the message (default: the user's own language, formal).
 2. Doctor's name and form of address.
 3. **Channel**: email, SMS or WhatsApp.
-4. **Where to send it**, depending on the channel: the doctor's email address, or the phone number for SMS / WhatsApp.
+4. **Where to send it**, depending on the channel: the doctor's email address, or the phone number for SMS / WhatsApp. Some chat clients open a menu when the user types `@`, which makes an email address hard to type. Tell the user they can write `chiocciola` or `at` (or `[at]`) in place of `@`, or paste the address. Convert it to `@`, then repeat the full address back and ask the user to confirm it before saving.
 5. **Doctor's turnaround**: how many working days the doctor needs to issue the prescription (default 2).
 6. **Advance**: how many working days before the stock runs out the user wants to send the request. Default 2. It must be larger than the turnaround, otherwise the prescription is ready the very day the stock ends with no margin: if the answer is not larger, say so and suggest turnaround + 1.
 7. How the user wants to receive the prescription (email, SMS, pick-up at the office).
